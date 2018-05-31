@@ -27,3 +27,13 @@ body {
 .portfolio-item {
   margin-bottom: 30px;
 }
+
+#navbarResponsive{
+	padding-right :290px;
+}
+
+#logo{
+	color:white;
+	20px;
+}
+
