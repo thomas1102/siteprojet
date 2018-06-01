@@ -11,9 +11,11 @@
     <title>LP MIAW DAWI</title>
 
   </head>
-
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="index.html">
           <img src="3f59c312-7fdc-4cff-b655-ca54db6a4f9b.png" width="110" height="110" alt="">
@@ -25,44 +27,75 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item ">
-              <a class="nav-link" href="index.html">Accueil
+              <a class="nav-link" href="connexion.html">Connexion
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="connexion.html">Connexion</a>
+              <a class="nav-link" href="inscription.html">Inscription</a>
             </li>
             
           </ul>
         </div>
       </div>
     </nav>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <div class="container">
+
+    <!-- Page Content -->
+    <div align="center">
+      <img class="baniere" src="Banniere-LinkedIn-17.jpg">
+    </div>
+
+  <div"class="container-fluid">
+  <div class="orange">
+  <ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link active" href="index.html">Accueil</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="Présentation.html">Présentation du parcours</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="ajout-offre-projet.html">Ajouter des offres de projets tuteurés</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="ajout-offre-alternance.html">Ajouter des offres d'alternance</a>
+  </li>
+</ul>
+</div>
+<br><br><br><br><br><br>
+<div class="container">
     
     <form class="form-signin">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 align="center" class="h1 mb-3 ">Inscription</h1>
+      <h1 align="center" class="h1 mb-3 ">Ajouter une offre d'alternance</h1>
       <br>
 
 
       
-      <input type="text" id="inputNom" class="form-control" placeholder="Nom" required autofocus>
+      <input type="text" id="TitrePoste" class="form-control" placeholder="Titre du poste" required autofocus>
       <br>
       
-      <input type="text" id="inputPrenom" class="form-control" placeholder="Prénom" required>
+      <input type="text" id="AdresseProjet" class="form-control" placeholder="Votre adresse" required>
       <br>   
 
-       <input type="email" id="inputEmail" class="form-control" placeholder="Adresse e-mail" required>
+       <input type="email" id="MailProjet" class="form-control" placeholder="Votre Adresse e-mail" required >
       <br>
       
-      <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+      <textarea class="form-control" rows="5" id="DescriptionPoste" placeholder="Décrivez le poste..." required></textarea>
       <br>
       
-      <button class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Ajoutez l'offre</button>
       <!--<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>-->
     </form>
+    <br><br><br><br>
+
 </div>
+
+
+</div>
+</div>
+
+
 
     <!-- /.container -->
 
