@@ -1,0 +1,29 @@
+.baniere {
+	width: 100%;
+	position: sticky;
+}
+
+
+
+body{
+	
+
+	padding: 0;
+    margin: 0;
+    margin-bottom: 0;
+    
+    
+}
+
+.orange{
+	background-color: #FFAB00;
+	height: auto;
+}
+
+a.nav-link{
+	color:white;
+}
+
+li.nav-item{
+	
+}
