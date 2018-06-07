@@ -22,6 +22,15 @@ class Database{
 		return $checkuser;
 	}
 
+	public function getTypeUser($mail)
+	{
+		$sql="select libType from utilisateur u, typeutilisateur t where u.idType=t.idType and mail='".$mail."'";
+		$checkuser= $this->_bd->query($sql);
+		return $checkuser;
+	}
+
+
+
 	public function connecter($mail,$nom,$prenom){
 		$_SESSION['mail']= $mail;
 		$_SESSION['nom']= $nom;
