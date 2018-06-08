@@ -112,7 +112,7 @@ session_start();
 
    }
    else{
-     echo "test";
+     echo "utilisateur";
    }
    ?>
   </h2>
@@ -122,7 +122,7 @@ session_start();
       echo $_SESSION['typeUser'];
     }
     else{
-       echo $_SESSION['typeUser'];
+       echo "utilisateur";
     }
     ?>
   </p>
