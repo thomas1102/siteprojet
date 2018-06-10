@@ -1,19 +1,19 @@
-<?php 
+<?php
 
 class Database{
-	
+
 	private $bd;
-	
+
 	public function __construct($bd)
 	{
 		$this->setDb($bd);
 	}
-	
+
 	public function setDb(PDO $b){
 		$this->_bd=$b;
-	
+
 	}
-	
+
 	//Connexion
 	public function connexion_user($mail,$mdp)
 	{
@@ -21,7 +21,16 @@ class Database{
 		$checkuser= $this->_bd->query($sql);;
 		return $checkuser;
 	}
-	
+
+	public function getTypeUser($mail)
+	{
+		$sql="select libType from utilisateur u, typeutilisateur t where u.idType=t.idType and mail='".$mail."'";
+		$checkuser= $this->_bd->query($sql);
+		return $checkuser;
+	}
+
+
+
 	public function connecter($mail,$nom,$prenom){
 		$_SESSION['mail']= $mail;
 		$_SESSION['nom']= $nom;
@@ -37,14 +46,14 @@ class Database{
 		$req="SELECT nom,prenom FROM utilisateur WHERE mail='".$mail."'";
 		$result=$bd->query($req);
 	}
-	
+
 	//Recupérer liste de matières
 	public function getListMatiere(){
 		$req="SELECT * FROM matiere ";
 		$listmat=$bd->query($req);
 		return $listmat;
 	}
-	
+
 	//Recupérer liste des alternances
 	public function getListAlternance(){
 		$req="SELECT * FROM posteAlternance ";
@@ -52,38 +61,38 @@ class Database{
 		while($donnees=$sql->fetch(PD::FETCH_ASSOC)) { $list[]=new posteAlternance($donnees);}
 		return $listAlt;
 	}
-	
-	//Recupérer liste des projets	
+
+	//Recupérer liste des projets
 	public function getListProjetTut(){
 		$req="SELECT * FROM projetTut ";
 		$listProjet=$bd->query($req);
 		while($donnees=$sql->fetch(PD::FETCH_ASSOC)) { $list[]=new projetTut($donnees);}
 		return $listAlt;
 	}
-	
+
 	//Recupérer note d'un étudiant
 	public function getNoteEtudiant($mail){
 		$req="SELECT nom,prenom,noteEleve FROM NOTE N, UTILISATEUR U WHERE n.eleve=u.mail and n.eleve='".$mail."'";
 		$result=$bd->query($req);
 	}
-	
+
 	//Recupérer note d'un étudiant
 	public function getProjetTut($mail){
 		$req="SELECT titreProjet FROM projetTut p,UTILISATEUR U WHERE p.administrateur=u.mail and u.mail='".$mail."'";
 		$result=$bd->query($req);
 	}
-	
+
 	public function getOffreAlt($mail){
 		$req="SELECT titrePoste FROM posteAlternance p,UTILISATEUR U WHERE p.administrateur=u.mail and u.mail='".$mail."'";
 		$result=$bd->query($req);
 	}
-	
+
 	//Matière d'un etudiant
 	public function MatEtudiant($mail){
 		$req="SELECT libMatiere FROM matiere m, note n,utilisateur u  WHERE u.mail=n.eleve and u.mail='".$mail."'";
 		$result=$bd->query($req);
 	}
-	
+
 	//Ajout Offre projet
 	public function ajoutOffre(ProjetTut $p){
         $req = 'INSERT INTO projetTut (idprojet, titreProjet, adresse, administrateur, mailContact, descriptionPoste) VALUES (:idprojet, :titreProjet, :administrateur, :mailContact, :descriptionPoste, NOW())';
@@ -96,7 +105,7 @@ class Database{
 		$sql->bindValue(':descriptionPoste', $p->getDescription(), PDO::PARAM_STR);
         $sql->execute();
     }
-	
+
 	//Ajout Offre alternance
 	public function ajoutOffreAlt(PosteAlternance $p){
         $req = 'INSERT INTO projetTut (idposte, titrePoste, adresse, administrateur, mailContact, descriptionPoste) VALUES (:idposte, :titreProjet, :administrateur, :mailContact, :descriptionPoste, NOW())';
@@ -109,7 +118,7 @@ class Database{
 		$sql->bindValue(':descriptionPoste', $p->getDescription(), PDO::PARAM_STR);
         $sql->execute();
     }
-	
+
 	//Modifier un offre alternance
 	public function MajOffreAlt($mail,$titreProjet,$adresse,$administrateur,$mailContact,$descriptionPoste,$idalt){
 		 $sql = "UPDATE posteAlternance SET titreProjet= '".$titreProjet."' and adresse= '".$adresse."' and administrateur= '".$administrateur."' and mailContact= '".$mailContact."' and descriptionPoste= '".$descriptionPoste."' WHERE idposte=".$idalt;
@@ -118,7 +127,7 @@ class Database{
 		//execute the query
 		$stmt->execute();
 	}
-	
+
 	//Modifier un offre projet
 	public function MajOffreProjet($mail,$titreProjet,$adresse,$administrateur,$mailContact,$descriptionPoste,$idprojet){
 		 $sql = "UPDATE projetTut SET titreProjet='".$titreProjet."' and adresse='".$adresse."' and administrateur='".$administrateur."' and mailContact='".$mailContact."' and descriptionPoste= '".$descriptionPoste."'  WHERE idprojet=" .$idprojet;
@@ -127,42 +136,42 @@ class Database{
 		//execute the query
 		$stmt->execute();
 	}
-	
+
 	//Supprimer un offre alternance
 	public function SuppOffreAlt($idalt){
 		$sql = "DELETE FROM posteAlternance where idposte = ".$idalt;
 		$bd->exec($sql);
 		$stmt->execute();
 	}
-	
+
 	//Supprimer un offre de projet
 	public function SuppOffreProjet($idProjet){
 		$sql = "DELETE FROM projetTut where idprojet = ".$idProjet;
 		$bd->exec($sql);
 		$stmt->execute();
 	}
-	
-	public function inscription($mdp, $mail, $prenom, $nom){
-		$req = "INSERT INTO utilisateur (mail, mdp, nom, prenom) VALUES ('".$mail."', '".$mdp."', '".$nom."', '".$prenom."')";
+
+	public function inscription($mdp, $mail, $prenom, $nom,$idtype){
+		$req = "INSERT INTO utilisateur (mail, mdp, nom, prenom,idType) VALUES ('".$mail."', '".$mdp."', '".$nom."', '".$prenom."','".$idtype."')";
         $sql = $this->_bd->query($req);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 }
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
  ?>
