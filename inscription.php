@@ -7,8 +7,6 @@ $co=connexion();
 $db = new Database($co);
 
 
-
-
 		if(isset($_POST['inscrire']) && isset($_POST['statut'])){
 			if(isset($_POST['nom']) AND isset($_POST['prenom']) AND isset($_POST['mail']) AND isset($_POST['mdp'])){
 
@@ -20,8 +18,9 @@ $db = new Database($co);
 
 					$checkinscrit = $co->prepare('SELECT mail FROM utilisateur WHERE mail = :mail ' );
 					$checkinscrit->execute(array('mail'=> $_POST['mail']));
-
 					$result = $checkinscrit->fetchAll();
+
+					echo count($result);
 	//header('Location:index.php');
 						if(count($result)==0){
 							switch ($_POST['statut']) {
