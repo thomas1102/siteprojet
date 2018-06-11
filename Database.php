@@ -85,8 +85,8 @@ class Database{
 
 	//Recupérer note d'un étudiant
 	public function getNoteEtudiant($mail){
-		$req="SELECT nom,prenom,noteEleve FROM NOTE N, UTILISATEUR U WHERE n.eleve=u.mail and n.eleve='".$mail."'";
-		$result=$bd->query($req);
+		$req="SELECT noteMax,noteEleve,libMatiere,noteMax,titreDevoir,professeur FROM NOTE N, UTILISATEUR u, Matiere m WHERE n.idMatiere=m.idMatiere and n.eleve=u.mail and n.eleve='".$mail."'";
+		$result=$this->_bd->query($req);
 	}
 	
 	public function getListNotes(){
