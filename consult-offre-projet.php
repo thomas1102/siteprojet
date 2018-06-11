@@ -1,5 +1,15 @@
 <!doctype html>
 <html lang="en">
+<?php
+require 'connexion.php';
+require 'Database.php';
+
+$co=connexion();
+
+$db = new Database($co);
+?>
+
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,13 +28,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-
           <img src="3f59c312-7fdc-4cff-b655-ca54db6a4f9b.png" width="110" height="110" alt="">
           
-
-          
-          
-
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -50,7 +55,7 @@
       <img class="baniere" src="Banniere-LinkedIn-17.jpg">
     </div>
 
-  
+  <div"class="container-fluid">
 <div class="orange">
   <ul class="nav">
   <li class="nav-item">
@@ -75,7 +80,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="note.html">Note</a>
               <a class="dropdown-item" href="edt.html">Emploi du temps</a>
-              <a class="dropdown-item" href="consult-offre-projet.php">Projet tuteurés</a>
+              <a class="dropdown-item" href="consult-offre-projet.html">Projet tuteurés</a>
               <a class="dropdown-item" href="consult-offre-alternance.php">Offres d'alternance</a>
               <a class="dropdown-item" href="support-cours.html">Support de cours</a>
             </div>
@@ -84,8 +89,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Espace enseignants</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="ajout-note.php">Ajouter une note</a>
-              <a class="dropdown-item" href="consult-note.php">Consulter ses notes déposées</a>
+              <a class="dropdown-item" href="ajout-note.html">Ajouter une note</a>
+              <a class="dropdown-item" href="consult-note.html">Consulter ses notes déposées</a>
               <a class="dropdown-item" href="edt-perso.html">Emploi du temps personnel</a>
               <a class="dropdown-item" href="ajout-support-cours.html">Ajouter un support de cours</a>
               <a class="dropdown-item" href="consult-self-support-cours.html">Consulter ses supports de cours</a>
@@ -93,48 +98,55 @@
           </li>
 </ul>
 </div>
-    </nav>
+<br><br><br>
+<div class="container">
+    
+    <h2>Offre projets tuteurés</h2>
+        <?php
+			$projets = $db->getListProjetTut();
+		?>      
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Titre projet</th>
+        <th>Adresse</th>
+        <th>Mail contact</th>
+        <th>Description</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+	<?php
+	while($donnees = $projets->fetch())
+        {
+	?>
+      <tr>
+        <td><?php echo $donnees['titreProjet'];?></td>
+        <td><?php echo $donnees['adresse'];?></td>
+        <td><?php echo $donnees['mailContact'];?></td>
+		<td><?php echo $donnees['descriptionPoste'];?></td>
+        </tr>
+	<?php
+            } 
+      ?>
+      </tbody>
+  </table>
+    <br><br><br><br><br><br>
 
 </div>
-<div align="center" class="">
-  <br><br>
- <h4>Objectif de la formation</h4>
-            <h5><span><i class="fa fa-star-o" aria-hidden="true"></i></span></h5>
-            <p>Former des jeunes de niveau BAC+2 aux m&eacute;tiers de l&rsquo;Internet et de responsable informatique charg&eacute; de la gestion d&rsquo;un r&eacute;seau local et du d&eacute;veloppement et d&eacute;ploiement de produits et de services Intranet ou / et Internet. Les postes vis&eacute;s sont interm&eacute;diaires entre des techniciens sup&eacute;rieurs et des ing&eacute;nieurs, principalement, orient&eacute;s vers les PME/PMI.<br /><br />Cette formation propose 2 parcours : <br /><br />&nbsp;&nbsp;&nbsp; Parcours ASR2I : Administration et S&eacute;curisation des R&eacute;seaux et services Internet et Intranet.<br />&nbsp;&nbsp;&nbsp; Parcours DAW2I : D&eacute;veloppement avanc&eacute; d&rsquo;Applications web Internet et Intranet.</p>
 
-            <h4>Metiers Vises</h4>
-            <h5><span><i class="fa fa-bullseye" aria-hidden="true"></i></span></h5>
-            <p>Les postes vis&eacute;s sont interm&eacute;diaires entre des techniciens sup&eacute;rieurs et des ing&eacute;nieurs, principalement, orient&eacute;s vers les PME/PMI :<br /><br />&nbsp;&nbsp;&nbsp; Administrateur de base de donn&eacute;es,<br />&nbsp;&nbsp;&nbsp; Administrateur r&eacute;seau,<br />&nbsp;&nbsp;&nbsp; Analyste d'exploitation,<br />&nbsp;&nbsp;&nbsp; Analyste programmeur,<br />&nbsp;&nbsp;&nbsp; Consultant informatique,<br />&nbsp;&nbsp;&nbsp; Responsable de la maintenance,<br />&nbsp;&nbsp;&nbsp; Responsable informatique.</p>
 
-            <h4>Pre-requis</h4>
-            <h5><span><i class="fa fa-check-circle" aria-hidden="true"></i></span></h5>
-            <p>Etre titulaire d&rsquo;un BAC + 2 (DUT, L2, BTS, DEUST).<br /><br />La s&eacute;lection se fait sur dossier, tests de connaissances, et &eacute;ventuellement entretien</p>
-<p>&nbsp;</p>
-<blockquote>
-<p>Lien pour candidater (Ouverture le 1er mars 2018) : <a href="https://candidature-lp.iut.univ-evry.fr/_inscription/"><u><span style="color: #000080;">https://candidature-lp.iut.univ-evry.fr/_inscription/</span></u></a></p>
-</blockquote>
+</div>
 
-            <h4>Contact</h4>
-            <h5><span><i class="fa fa-phone" aria-hidden="true"></i></span></h5>
-            <p>
-                <b>IUT d&#039;Evry Val d&#039;Essonne - Département G.E.I.I.</b><br>
-                Cours Monseigneur Roméro 91000 EVRY<br>
-                Tél.: 01 69 47 72 21<br>
+</div>
 
-        <footer class="footer">
+<footer class="footer">
       <div class="container">
-      
+        
       </div>
     </footer>
 
-
-   
-</nav>
-</div>
-</div>
-
-
-    <!-- /.container -->
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -65,22 +65,34 @@ class Database{
 	public function getListAlternance(){
 		$req="SELECT * FROM posteAlternance ";
 		$listAlt=$this->_bd->query($req);
-		while($donnees=$sql->fetch(PD::FETCH_ASSOC)) { $list[]=new posteAlternance($donnees);}
+		//while($donnees=$req->fetch(PDO::FETCH_ASSOC)) { $list[]=new posteAlternance($donnees);}
 		return $listAlt;
 	}
 
-	//Recupérer liste des projets
+	/*Recupérer liste des projets
 	public function getListProjetTut(){
 		$req="SELECT * FROM projetTut ";
 		$listProjet=$bd->query($req);
 		while($donnees=$sql->fetch(PD::FETCH_ASSOC)) { $list[]=new projetTut($donnees);}
 		return $listAlt;
+	}*/
+	
+	public function getListProjetTut(){
+		$req="SELECT * FROM projetTut ";
+		$result=$this->_bd->query($req);
+		return $result;
 	}
 
 	//Recupérer note d'un étudiant
 	public function getNoteEtudiant($mail){
 		$req="SELECT nom,prenom,noteEleve FROM NOTE N, UTILISATEUR U WHERE n.eleve=u.mail and n.eleve='".$mail."'";
 		$result=$bd->query($req);
+	}
+	
+	public function getListNotes(){
+		$req="SELECT eleve,libMatiere,titreDevoir,noteEleve FROM note n, matiere m where n.idMatiere=m.idMatiere ";
+		$listNotes=$this->_bd->query($req);
+		return $listNotes;
 	}
 	
 	public function getIdMatiere($nom){
