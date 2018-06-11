@@ -24,37 +24,37 @@ class note  // Présence du mot-clé class suivi du nom de la classe.
         }
     }
   
-	public getIdNote() {
+	public function getIdNote() {
 	  
 		return $this->idNote;
 	}
   
-	public getIdMatiere() {
+	public function getIdMatiere() {
 	  
 		return $this->idMatiere;
 	}	
   
-	public getNoteMax() {
+	public function getNoteMax() {
 	  
 		return $this->noteMax;
 	}
   
-	public getNoteEleve() {
+	public function getNoteEleve() {
 	  
 		return $this->noteEleve;
 	}
   
-	public getTitreDevoir() {
+	public function getTitreDevoir() {
 	  
 		return $this->titreDevoir;
 	}
 	
-	public getProfesseur() {
+	public function getProfesseur() {
 	  
 		return $this->professeur;
 	}
 	
-	public getEleve() {
+	public function getEleve() {
 	  
 		return $this->eleve;
 	}

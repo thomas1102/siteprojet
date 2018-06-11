@@ -100,7 +100,7 @@ $db = new Database($co);
 <br><br><br>
 <div class="container">
     
-    <form class="form-signin">
+    <form class="form-signin" method="post" action="ajouteNote.php">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 align="center" class="h1 mb-3 ">Ajouter une note</h1>
       <br>
@@ -145,14 +145,14 @@ $db = new Database($co);
   </select>
 </div>  
 
-       <input type="text" id="TitreDevoir" class="form-control" placeholder="Titre du devoir" required >
+       <input type="text" id="TitreDevoir" name="titreDevoir" class="form-control" placeholder="Titre du devoir" required >
       <br>
-      <input type="text" id="Note" class="form-control" placeholder="Note/20" required  >
+      <input type="text" id="Note" name="note" class="form-control" placeholder="Note/20" required  >
       <br>
       
       
       
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Ajoutez la note</button>
+      <button class="btn btn-lg btn-primary btn-block" name="ajoutNote" type="submit">Ajoutez la note</button>
       <!--<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>-->
     </form>
     <br><br><br><br>

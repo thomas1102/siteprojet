@@ -82,6 +82,12 @@ class Database{
 		$req="SELECT nom,prenom,noteEleve FROM NOTE N, UTILISATEUR U WHERE n.eleve=u.mail and n.eleve='".$mail."'";
 		$result=$bd->query($req);
 	}
+	
+	public function getIdMatiere($nom){
+		$req="SELECT idMatiere FROM matiere where libMatiere='".$nom."'";
+		$idMatiere=$this->_bd->query($req);
+		return $idMatiere;
+	}
 
 	//Recupérer projet d'un étudiant
 	public function getProjetTut($mail){
@@ -156,6 +162,20 @@ class Database{
 		$sql = "DELETE FROM projetTut where idprojet = ".$idProjet;
 		$bd->exec($sql);
 		$stmt->execute();
+	}
+	
+	public function ajoutNote(note $n){
+		
+		$req = 'INSERT INTO note (idMatiere,noteMax, noteEleve, titreDevoir, professeur, eleve) VALUES (:idMatiere,:noteMax, :noteEleve, :titreDevoir, :professeur, :eleve)';
+		$sql = $this->_bd->prepare($req);
+		$sql->bindValue(':idMatiere', $n->getIdMatiere(), PDO::PARAM_INT);
+		$sql->bindValue(':noteMax', $n->getNoteMax(), PDO::PARAM_INT);
+		$sql->bindValue(':noteEleve', $n->getNoteEleve(), PDO::PARAM_INT);
+		$sql->bindValue(':titreDevoir', $n->getTitreDevoir(), PDO::PARAM_STR);
+		$sql->bindValue(':professeur', $n->getProfesseur(), PDO::PARAM_STR);
+		$sql->bindValue(':eleve', $n->getEleve(), PDO::PARAM_STR);
+	
+		$sql->execute();
 	}
 
 	public function inscription(utilisateur $u){
