@@ -151,9 +151,15 @@ class Database{
 		$stmt->execute();
 	}
 
-	public function inscription($mdp, $mail, $prenom, $nom,$idtype){
-		$req = "INSERT INTO utilisateur (mail, mdp, nom, prenom,idType) VALUES ('".$mail."', '".$mdp."', '".$nom."', '".$prenom."','".$idtype."')";
-        $sql = $this->_bd->query($req);
+	public function inscription(Utilisateur $u){
+		$req = 'INSERT INTO utilisateur (mail, mdp, nom, prenom, idType) VALUES (:mail, :mdp, :nom, :prenom, :idType, NOW())';
+		$sql = $this->$bd->prepare($req);
+		$sql->bindValue(':mail', $u->getMail(), PDO::PARAM_STR);
+		$sql->bindValue(':mdp', $u->getMdp(), PDO::PARAM_STR);
+		$sql->bindValue(':nom', $u->getNom(), PDO::PARAM_STR);
+		$sql->bindValue(':prenom', $u->getPrenom(), PDO::PARAM_STR);
+		$sql->bindValue(':idType', $u->getIdType(), PDO::PARAM_STR);
+		$sql->execute();
 	}
 
 

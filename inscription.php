@@ -25,19 +25,20 @@ $db = new Database($co);
 						if(count($result)==0){
 							switch ($_POST['statut']) {
     								case 'Etudiant':
-										$db->inscription($_POST["mdp"],$_POST["mail"],$_POST["prenom"],$_POST["nom"],1);
+										//$db->inscription($_POST["mdp"],$_POST["mail"],$_POST["prenom"],$_POST["nom"],1);
+										$typeUser=1;
 										echo "Etudiant ajouté success !";
         						break;
     								case 'Entreprise':
-										$db->inscription($_POST["mdp"],$_POST["mail"],$_POST["prenom"],$_POST["nom"],2);
+											$typeUser=2;
 										echo "Entreprise ajouté success !";
         						break;
     								case 'Administrateur':
-										$db->inscription($_POST["mdp"],$_POST["mail"],$_POST["prenom"],$_POST["nom"],3);
+											$typeUser=3;
 										echo "Admin ajouté success !";
         						break;
-										case 'Personnel':
-										$db->inscription($_POST["mdp"],$_POST["mail"],$_POST["prenom"],$_POST["nom"],4);
+										case 'Enseignant':
+											$typeUser=4;
 										echo "Personnel ajouté success !";
         						break;
 									}
@@ -52,6 +53,10 @@ $db = new Database($co);
 
 			}
 		}
+
+$utilisateur=new Utilisateur($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['mdp'], $typeUser);
+
+$db->inscription($utilisateur);
 
 
 
