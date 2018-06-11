@@ -48,22 +48,23 @@ class Database{
 	}
 	
 	//Recupérer des utilisateurs
-	public function getUtilisateur($mail){
+	public function getListUtilisateur(){
 		$req="SELECT * FROM utilisateur WHERE idType=1";
-		$result=$bd->query($req);
+		$result=$this->_bd->query($req);
+		return $result;
 	}
 
 	//Recupérer liste de matières
 	public function getListMatiere(){
 		$req="SELECT * FROM matiere ";
-		$listmat=$bd->query($req);
+		$listmat=$this->_bd->query($req);
 		return $listmat;
 	}
 
 	//Recupérer liste des alternances
 	public function getListAlternance(){
 		$req="SELECT * FROM posteAlternance ";
-		$listAlt=$bd->query($req);
+		$listAlt=$this->_bd->query($req);
 		while($donnees=$sql->fetch(PD::FETCH_ASSOC)) { $list[]=new posteAlternance($donnees);}
 		return $listAlt;
 	}

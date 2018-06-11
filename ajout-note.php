@@ -1,5 +1,14 @@
 <!doctype html>
 <html lang="en">
+<?php
+require 'connexion.php';
+require 'Database.php';
+
+$co=connexion();
+
+$db = new Database($co);
+?>
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -97,20 +106,41 @@
       <br>
 <div class="form-group">
   <label for="sel1">Choisir élève :</label>
-
+  
+  <?php
+			$eleves = $db->getListUtilisateur();
+	?>
   
   <select class="form-control" name="listEleve" id="sel1">
-    <option></option>
-    <option></option>
-    <option></option>
+    <?php
+	while($donnees = $eleves->fetch())
+        {
+	?>
+    <option><?php echo $donnees['nom'];?></option>
+	<?php
+        } 	
+    ?>
+	
+	
     
   </select>
 </div>
     <div class="form-group">
   <label for="sel1">Choisir matière </label>
-  <select class="form-control" id="sel1">
-
-    <option></option>
+  
+  <?php
+	$matieres=$db->getListMatiere();
+  ?>
+  <select class="form-control" name="listMatiere" id="sel1">
+	<?php
+	while($donnees = $matieres->fetch())
+        {
+	?>
+    <option><?php echo $donnees['libMatiere'];?></option>
+	<?php
+        }
+	?>
+  
     
   </select>
 </div>  
