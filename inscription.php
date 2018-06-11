@@ -1,6 +1,7 @@
 <?php
 require 'connexion.php';
 require('Database.php');
+require('autoload.php');
 
 $co=connexion();
 
@@ -19,7 +20,8 @@ $db = new Database($co);
 					$checkinscrit = $co->prepare('SELECT mail FROM utilisateur WHERE mail = :mail ' );
 					$checkinscrit->execute(array('mail'=> $_POST['mail']));
 					$result = $checkinscrit->fetchAll();
-
+					
+					
 					echo count($result);
 	//header('Location:index.php');
 						if(count($result)==0){
@@ -54,9 +56,15 @@ $db = new Database($co);
 			}
 		}
 
-$utilisateur=new Utilisateur($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['mdp'], $typeUser);
+$u = new utilisateur(array(
+'nom'=>$_POST['nom'],
+'prenom'=>$_POST['prenom'],
+'mail'=>$_POST['mail'],
+'mdp'=>$_POST['mdp'], 
+'idType'=>$typeUser));
 
-$db->inscription($utilisateur);
+$db->inscription($u);
+
 
 
 

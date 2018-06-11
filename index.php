@@ -17,37 +17,25 @@ session_start();
   </head>
 <body>
 
+	<?php
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">
+		if (isset($_SESSION['mail']) ) {
 
-          <img src="3f59c312-7fdc-4cff-b655-ca54db6a4f9b.png" width="110" height="110" alt="">
+			require 'co.php';
 
 
+		}
+
+		else {
+
+			require 'deconnexion.php';
+			echo "non ok";
+
+		}
+
+	?>
 
 
-
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item ">
-              <a class="nav-link" href="connexion.html">Connexion
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="inscription.html">Inscription</a>
-            </li>
-
-          </ul>
-        </div>
-      </div>
-    </nav>
 
     <!-- Page Content -->
     <div align="center">
@@ -55,51 +43,47 @@ session_start();
     </div>
 
   <div"class="container-fluid">
-  <div class="orange">
-   <nav class="navbar navbar-expand-md">
+ <div class="orange">
+  <ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link active" href="index.html">Accueil</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="Présentation.html">Présentation du parcours</a>
+  </li>
 
-
-
-      <div class="navbar" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">Accueil <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="présentation.html">Présentation de la licence</a>
-          </li>
-
-          <li class="nav-item dropdown">
+  <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Espace entreprise</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="ajout-offre-projet.html">Ajouter un projet tuteuré</a>
+              <a class="dropdown-item" href="consult-self-offre-projet.html">Consulter mes projets tuteurés</a>
+              <a class="dropdown-item" href="ajout-offre-alternance.html">Ajouter une offre d'alternance</a>
+              <a class="dropdown-item" href="consult-self-offre-alternance.html">Consulter mes offres d'alternances</a>
             </div>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Espace étudiant</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="note.html">Note</a>
+              <a class="dropdown-item" href="edt.html">Emploi du temps</a>
+              <a class="dropdown-item" href="consult-offre-projet.html">Projet tuteurés</a>
+              <a class="dropdown-item" href="consult-offre-alternance.html">Offres d'alternance</a>
+              <a class="dropdown-item" href="support-cours.html">Support de cours</a>
             </div>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Espace enseignants</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="ajout-note.html">Ajouter une note</a>
+              <a class="dropdown-item" href="consult-note.html">Consulter ses notes déposées</a>
+              <a class="dropdown-item" href="edt-perso.html">Emploi du temps personnel</a>
+              <a class="dropdown-item" href="ajout-support-cours.html">Ajouter un support de cours</a>
+              <a class="dropdown-item" href="consult-self-support-cours.html">Consulter ses supports de cours</a>
             </div>
           </li>
-        </ul>
-        </div>
-      </div>
-    </nav>
-
+</ul>
 </div>
 <div align="center" class="">
   <br><br>
@@ -120,6 +104,7 @@ session_start();
     <?php
     if(isset($_SESSION['typeUser'])){
       echo $_SESSION['typeUser'];
+
     }
     else{
        echo "utilisateur";

@@ -22,27 +22,27 @@ class utilisateur // Présence du mot-clé class suivi du nom de la classe.
         }
     }
   
-	public getMail() {
+	public function getMail() {
 	  
 		return $this->mail;
 	}
   
-	public getMdp() {
+	public function getMdp() {
 	  
 		return $this->mdp;
 	}	
   
-	public getNom() {
+	public function getNom() {
 	  
 		return $this->nom;
 	}
   
-	public getPrenom() {
+	public function getPrenom() {
 	  
 		return $this->prenom;
 	}
   
-	public getIdType() {
+	public function getIdType() {
 	  
 		return $this->idType;
 	}
